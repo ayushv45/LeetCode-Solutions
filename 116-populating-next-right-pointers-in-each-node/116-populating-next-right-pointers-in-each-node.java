@@ -33,9 +33,7 @@ class Solution {
             for(int i=0;i<size;i++)
             {
                 Node curr = q.poll();
-                if(i==size-1)
-                    curr.next = null;
-                else
+                if(i<size-1)
                     curr.next = q.peek();
                 if(curr.left!=null)
                 {
