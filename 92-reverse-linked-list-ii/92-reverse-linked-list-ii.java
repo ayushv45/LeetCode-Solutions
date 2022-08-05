@@ -14,10 +14,11 @@ class Solution {
         ListNode prev = null;
         ListNode pre = head;
         int i=1;
-        for(i=1;i<left;i++)
+        while(i<left)
         {
            pre = curr;
            curr = curr.next;
+           i++;
         }
         ListNode start = curr;
         while(i<=right)
