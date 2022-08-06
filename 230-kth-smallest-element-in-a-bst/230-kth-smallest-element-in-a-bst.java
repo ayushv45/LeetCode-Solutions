@@ -14,24 +14,26 @@
  * }
  */
 class Solution {
+    int ans = 0;
     public int kthSmallest(TreeNode root, int k) {
         if(root == null)
             return 0;
-        PriorityQueue<Integer> minHeap = new PriorityQueue();
-        traverse(root,minHeap);
-        while(k>1)
-        {
-            minHeap.poll();
-            k--;
-        }
-        return minHeap.peek();
+        int[] arr = new int[1];
+        arr[0]=k;
+        traverse(root,arr);
+        return ans;
     }
-    void traverse(TreeNode root,  PriorityQueue<Integer> minHeap )
+    void traverse(TreeNode root ,int[] arr)
     {
         if(root == null)
             return;
-        minHeap.add(root.val);
-        traverse(root.left,minHeap);
-        traverse(root.right,minHeap);
+        traverse(root.left,arr);
+        arr[0]--;
+        if(arr[0]==0)
+        {
+          ans = root.val;
+            return;
+        } 
+        traverse(root.right,arr);
     }
 }
