@@ -14,23 +14,15 @@
  * }
  */
 class Solution {
-    boolean found = false;
-    HashSet<Integer> set = new HashSet<>();
-    public boolean findTarget(TreeNode root, int k) {
-        find(root,k);
-        return found;
+public boolean findTarget(TreeNode root, int k) {
+        HashSet<Integer> set = new HashSet<>();
+        return dfs(root, set, k);
     }
-     void find(TreeNode root, int k)
-     {
-         if(root == null)
-             return;
-         if(set.contains(root.val))
-         {
-             found = true;
-             return;
-         }
-         set.add(k-root.val);
-         find(root.left,k);
-         find(root.right,k);
-     }
+    
+    public boolean dfs(TreeNode root, HashSet<Integer> set, int k){
+        if(root == null)return false;
+        if(set.contains(k - root.val))return true;
+        set.add(root.val);
+        return dfs(root.left, set, k) || dfs(root.right, set, k);
+    }
 }
