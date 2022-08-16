@@ -14,26 +14,25 @@
  * }
  */
 class Solution {
-    int ans = 0;
+    int rem;
     public int kthSmallest(TreeNode root, int k) {
         if(root == null)
             return 0;
-        int[] arr = new int[1];
-        arr[0]=k;
-        traverse(root,arr);
-        return ans;
+        rem =k;
+        return traverse(root);
     }
-    void traverse(TreeNode root ,int[] arr)
+    int traverse(TreeNode root)
     {
         if(root == null)
-            return;
-        traverse(root.left,arr);
-        arr[0]--;
-        if(arr[0]==0)
+            return -1;
+        int ans = traverse(root.left);
+        if(ans!=-1)
         {
-          ans = root.val;
-            return;
+            return ans;
         } 
-        traverse(root.right,arr);
+        rem--;
+        if(rem == 0)
+            return root.val;
+        return traverse(root.right);
     }
 }
